@@ -1,0 +1,4 @@
+Explanation: OS patches for Xubuntu for GalliumOS
+Package: *
+Pin: release n=vivid-galliumos
+Pin-Priority: 9999
