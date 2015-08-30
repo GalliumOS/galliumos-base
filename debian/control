@@ -1,0 +1,15 @@
+Source: galliumos-base
+Section: admin
+Priority: required
+Maintainer: Hugh Greenberg <hugh@galliumos.org>
+XSBC-Original-Maintainer: Hugh Greenberg <hugh@galliumos.org>
+Standards-Version: 3.9.1
+
+Package: galliumos-base
+Provides: base
+Architecture: any
+Essential: yes
+Priority: required
+Multi-Arch: foreign
+Description: Gallium OS system miscellaneous files
+ This package contains common files for GalliumOS

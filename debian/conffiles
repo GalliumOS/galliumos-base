@@ -1,0 +1,5 @@
+/etc/apt/trusted.gpg.d/galliumos.gpg
+/etc/apt/preferences.d/galliumos.pref
+/etc/apt/sources.list.d/galliumos-vivid.list
+/usr/share/X11/xorg.conf.d/20-intel.conf
+

@@ -1,0 +1,28 @@
+#!/usr/bin/make -f
+
+package = galliumos-base
+build:
+	touch build
+
+clean:
+	rm -f build
+	rm -f `find . -name "*~"`
+	rm -rf debian/tmp debian/lsb-release-udeb debian/files* core debian/substvars
+
+binary-arch: build
+	rm -rf debian/tmp
+	install -d debian/tmp/DEBIAN
+	install -d debian/tmp/etc/apt/preferences.d
+	install -d debian/tmp/etc/apt/sources.list.d
+	install -d debian/tmp/etc/apt/trusted.gpg.d
+	install -d debian/tmp/usr/share/X11/xorg.conf.d
+	install -p -m 644 etc/apt/preferences.d/* debian/tmp/etc/apt/preferences.d
+	install -p -m 644 etc/apt/sources.list.d/* debian/tmp/etc/apt/sources.list.d
+	install -p -m 644 etc/apt/trusted.gpg.d/* debian/tmp/etc/apt/trusted.gpg.d
+	install -p -m 644 usr/share/X11/xorg.conf.d/* debian/tmp/usr/share/X11/xorg.conf.d
+	dpkg-gencontrol -pgalliumos-base
+	dpkg-deb --build -Zgzip debian/tmp ..
+
+binary: binary-arch
+
+.PHONY: binary binary-arch clean
