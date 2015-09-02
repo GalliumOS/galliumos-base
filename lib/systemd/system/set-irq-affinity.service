@@ -1,0 +1,10 @@
+[Unit]
+Description=Sets IRQ CPU affinity
+
+[Service]
+ExecStart=/usr/bin/init-set-irq-affinity
+Type=oneshot
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target

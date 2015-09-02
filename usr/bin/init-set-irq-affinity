@@ -1,0 +1,13 @@
+#!/bin/bash
+
+#Set the CPU affinity for the IRQs on CPU2
+for i in `ls -1 /proc/irq/` 
+do
+   if [ -d "/proc/irq/$i" ]
+   then
+      echo 2 > /proc/irq/$i/smp_affinity > /dev/null 2>&1
+   fi
+done
+
+#Set the default affinity to cpu 2
+echo 2 > /proc/irq/default_smp_affinity

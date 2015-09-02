@@ -7,7 +7,7 @@ build:
 clean:
 	rm -f build
 	rm -f `find . -name "*~"`
-	rm -rf debian/tmp debian/lsb-release-udeb debian/files* core debian/substvars
+	rm -rf debian/tmp 
 
 binary-arch: build
 	rm -rf debian/tmp
@@ -16,10 +16,14 @@ binary-arch: build
 	install -d debian/tmp/etc/apt/sources.list.d
 	install -d debian/tmp/etc/apt/trusted.gpg.d
 	install -d debian/tmp/usr/share/X11/xorg.conf.d
+	install -d debian/tmp/lib/systemd/system
+	install -d debian/tmp/usr/bin
 	install -p -m 644 etc/apt/preferences.d/* debian/tmp/etc/apt/preferences.d
 	install -p -m 644 etc/apt/sources.list.d/* debian/tmp/etc/apt/sources.list.d
 	install -p -m 644 etc/apt/trusted.gpg.d/* debian/tmp/etc/apt/trusted.gpg.d
 	install -p -m 644 usr/share/X11/xorg.conf.d/* debian/tmp/usr/share/X11/xorg.conf.d
+	install -p -m 644 lib/systemd/system/* debian/tmp/lib/systemd/system
+	install -p -m 755 usr/bin/* debian/tmp/usr/bin
 	dpkg-gencontrol -pgalliumos-base
 	dpkg-deb --build -Zgzip debian/tmp ..
 
