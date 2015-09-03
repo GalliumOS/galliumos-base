@@ -1,0 +1,30 @@
+#!/bin/bash
+
+#Copy the correct touchpad file
+DEVICE=`/usr/sbin/dmidecode | grep "Product Name" | head -1 | \
+        cut -f 2 -d ":" | awk '{print tolower($0)}' | sed -e 's/^[ \t]*//'`
+TOUCHPAD_CONFIGS="/usr/share/xf86-input-cmt/"
+DEST_CONFIG="/usr/share/X11/xorg.conf.d/"
+CONFIG=`ls $TOUCHPAD_CONFIGS*${DEVICE}*.conf`
+
+if [ ! -f ${DEST_CONFIG}${CONFIG} ]
+then
+   if [ -f $CONFIG ]
+   then
+      cp $CONFIG $DEST_CONFIG
+   fi
+fi
+
+
+#Disable the touchpad from waking up the system from sleep
+TPAD=`cat /proc/acpi/wakeup | grep TPAD | grep enabled | tr -d '\n'`
+if [ -n "$TPAD" ]
+then
+   echo "TPAD" > /proc/acpi/wakeup
+fi
+
+ETPA=`cat /proc/acpi/wakeup | grep ETPA | grep enabled | tr -d '\n'`
+if [ -n "$ETPA" ]
+then
+   echo "ETPA" > /proc/acpi/wakeup
+fi

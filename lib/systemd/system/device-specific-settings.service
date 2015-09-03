@@ -1,0 +1,10 @@
+[Unit]
+Description=Sets Device Specific Settings
+
+[Service]
+ExecStart=/usr/bin/init-device-specific-settings
+Type=oneshot
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target
