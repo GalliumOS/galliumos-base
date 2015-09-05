@@ -1,4 +1,4 @@
 #!/bin/bash
 
-systemctl enable set-irq-affinity
-systemctl enable device-specific-settings
+ln -sf /lib/systemd/system/set-irq-affinity.service /etc/systemd/system/multi-user.target.wants/set-irq-affinity.service 
+ln -sf /lib/systemd/system/device-specific-settings.service /etc/systemd/system/multi-user.target.wants/device-specific-settings
