@@ -28,3 +28,7 @@ if [ -n "$ETPA" ]
 then
    echo "ETPA" > /proc/acpi/wakeup
 fi
+
+#Change permissions on backlight controls
+chgrp plugdev /sys/class/backlight/intel_backlight/brightness
+chmod 664 /sys/class/backlight/intel_backlight/brightness
