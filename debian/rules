@@ -19,7 +19,7 @@ binary-arch: build
 	install -d debian/tmp/usr/share/X11/xorg.conf.d
 	install -d debian/tmp/lib/systemd/system
 	install -d debian/tmp/usr/bin
-	install -p -m 644 etc/apt/skel/* debian/tmp/etc/skel
+	cp -r etc/skel/ debian/tmp/etc/skel
 	install -p -m 644 etc/apt/preferences.d/* debian/tmp/etc/apt/preferences.d
 	install -p -m 644 etc/apt/sources.list.d/* debian/tmp/etc/apt/sources.list.d
 	install -p -m 644 etc/apt/trusted.gpg.d/* debian/tmp/etc/apt/trusted.gpg.d
