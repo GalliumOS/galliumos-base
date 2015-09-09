@@ -73,11 +73,6 @@
       <property name="expand" type="bool" value="true"/>
       <property name="style" type="uint" value="0"/>
     </property>
-    <property name="plugin-9" type="string" value="launcher">
-      <property name="items" type="array">
-        <value type="string" value="14414172281.desktop"/>
-      </property>
-    </property>
     <property name="plugin-11" type="string" value="launcher">
       <property name="items" type="array">
         <value type="string" value="14414172513.desktop"/>
@@ -86,6 +81,11 @@
     <property name="plugin-12" type="string" value="launcher">
       <property name="items" type="array">
         <value type="string" value="14414172624.desktop"/>
+      </property>
+    </property>
+    <property name="plugin-9" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="14417693881.desktop"/>
       </property>
     </property>
   </property>

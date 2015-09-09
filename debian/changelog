@@ -1,3 +1,9 @@
+galliumos-base (1.0.2) vivid-galliumos; urgency=medium
+
+  * Updated desktop config
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Tue, 8 Sep 2015 22:16:16 -0600
+
 galliumos-base (1.0.1) vivid-galliumos; urgency=medium
 
   * Changes
