@@ -1,3 +1,34 @@
+galliumos-base (1.0.7) vivid-galliumos; urgency=medium
+
+  * Re-added irq affinity script
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Wed, 9 Sep 2015 22:16:16 -0600
+
+
+galliumos-base (1.0.6) vivid-galliumos; urgency=medium
+
+  * Update XFCE defaults
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Wed, 9 Sep 2015 22:16:16 -0600
+
+galliumos-base (1.0.5) vivid-galliumos; urgency=medium
+
+  * Fixed firefox defaults
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Wed, 9 Sep 2015 22:16:16 -0600
+
+galliumos-base (1.0.4) vivid-galliumos; urgency=medium
+
+  * Removed irq affinity script
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Wed, 9 Sep 2015 22:16:16 -0600
+
+galliumos-base (1.0.3) vivid-galliumos; urgency=medium
+
+  * Added firefox defaults
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Tue, 8 Sep 2015 22:16:16 -0600
+
 galliumos-base (1.0.2) vivid-galliumos; urgency=medium
 
   * Updated desktop config
