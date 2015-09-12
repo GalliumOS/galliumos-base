@@ -1,3 +1,17 @@
+galliumos-base (1.0.9) vivid-galliumos; urgency=medium
+
+  * Removed 20-intel.conf. 
+  * Installed irqbalance
+  * Removed irq affinity script. Makes this worse or the same.
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Fri, 11 Sep 2015 22:16:16 -0600
+
+galliumos-base (1.0.8) vivid-galliumos; urgency=medium
+
+  * Disabled vsync again
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Wed, 9 Sep 2015 22:16:16 -0600
+
 galliumos-base (1.0.7) vivid-galliumos; urgency=medium
 
   * Re-added irq affinity script
