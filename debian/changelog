@@ -1,3 +1,21 @@
+galliumos-base (1.0.12) vivid-galliumos; urgency=medium
+
+  * Modified init-device-settings to tweak the bfq scheduler
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Thu, 17 Sep 2015 22:16:16 -0600
+
+galliumos-base (1.0.11) vivid-galliumos; urgency=medium
+
+  * Set GPU min frequency in init-device-settings
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Thu, 17 Sep 2015 22:16:16 -0600
+
+galliumos-base (1.0.10) vivid-galliumos; urgency=medium
+
+  * Removed irqbalance.
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Tue, 15 Sep 2015 22:16:16 -0600
+
 galliumos-base (1.0.9) vivid-galliumos; urgency=medium
 
   * Removed 20-intel.conf. 

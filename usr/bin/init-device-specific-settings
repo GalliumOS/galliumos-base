@@ -29,6 +29,21 @@ then
    echo "ETPA" > /proc/acpi/wakeup
 fi
 
+#Lower the min frequency of the gpu
+MIN_FREQ="/sys/class/drm/card0/gt_min_freq_mhz"
+for i in 100 200 300
+do
+   echo $i > $MIN_FREQ > /dev/null 2>&1
+   if [ $? == "0" ]
+   then
+      break
+   fi
+done
+
+
 #Change permissions on backlight controls
 chgrp plugdev /sys/class/backlight/intel_backlight/brightness
 chmod 664 /sys/class/backlight/intel_backlight/brightness
+
+#Tweak the bfq scheduler for /dev/sda
+echo 200 > /sys/block/sda/queue/iosched/timeout_sync
