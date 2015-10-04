@@ -1,3 +1,15 @@
+galliumos-base (1.0.14) vivid-galliumos; urgency=medium
+
+  * Added /usr/bin/hdmi-change script and udev rule for hdmi changes
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Mon, 28 Sep 2015 22:16:16 -0600
+
+galliumos-base (1.0.13) vivid-galliumos; urgency=medium
+
+  * Added dependency for zram-config
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Mon, 28 Sep 2015 22:16:16 -0600
+
 galliumos-base (1.0.12) vivid-galliumos; urgency=medium
 
   * Modified init-device-settings to tweak the bfq scheduler
