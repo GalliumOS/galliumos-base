@@ -16,7 +16,7 @@ for x in /tmp/.X11-unix/*; do
 	;;
 	post/*)
 	    getXuser;
-	    sudo -u $user env DISPLAY=":$displaynum" /usr/bin/xrandr --auto
+	    sudo -u $user env DISPLAY=":$displaynum" /usr/bin/xrandr --auto --dpi 133
         ;;
     esac
 done

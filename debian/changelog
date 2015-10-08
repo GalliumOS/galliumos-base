@@ -1,3 +1,9 @@
+galliumos-base (1.0.15) vivid-galliumos; urgency=medium
+
+  * Modified /usr/bin/hdmi-change script
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Wed, 07 Oct 2015 22:16:16 -0600
+
 galliumos-base (1.0.14) vivid-galliumos; urgency=medium
 
   * Added /usr/bin/hdmi-change script and udev rule for hdmi changes
