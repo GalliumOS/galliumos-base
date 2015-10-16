@@ -10,7 +10,7 @@ Provides: base
 Architecture: any
 Essential: yes
 Priority: required
-Depends: zram-config
+Depends: ubuntu-standard, galliumos-desktop
 Multi-Arch: foreign
 Description: Gallium OS system miscellaneous files
  This package contains common files for GalliumOS

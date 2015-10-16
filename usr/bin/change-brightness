@@ -3,8 +3,8 @@
 # Original: https://gist.github.com/mbaez/9271180
 # Modded by: Hugh Greenberg <hugegreenbug@gmail.com>
 
-# sudo ./change-brightness.sh -3000 //reduce the brightness
-# sudo ./change-brightness.sh 3000 //add brightness
+#./change-brightness.sh -30 //reduce the brightness
+#./change-brightness.sh 30 //add brightness
 
 if [ -z $1 ]; then
    echo "Missing brightness change"
@@ -28,13 +28,16 @@ echo $NEW > $path/brightness
 
 #show notification
 PERCENTAGE=`echo "$NEW/$MAX * 100" | bc -l`
-LAST_ID_FILE="/tmp/change-brightness-id"
+LAST_ID_FILE="/tmp/change-brightness-id-$USER"
 
 if [ -f $LAST_ID_FILE ]
 then
-  LAST_ID=`cat /tmp/change-brightness-id`
-  echo "Last ID: $LAST_ID"
-  notify-send -a brightness -i xfpm-brightness-lcd -h int:value:$PERCENTAGE "Brightness ${PERCENTAGE}%" -r $LAST_ID -p > $LAST_ID_FILE
+  LAST_ID=`flock -s $LAST_ID_FILE cat $LAST_ID_FILE`
+  if [ -n $LAST_ID ]; then
+     flock -e $LAST_ID_FILE notify-send -a brightness -i xfpm-brightness-lcd -h int:value:$PERCENTAGE "Brightness ${PERCENTAGE}%" -r $LAST_ID -p > $LAST_ID_FILE
+  else
+     flock -e $LAST_ID_FILE notify-send -a brightness -i xfpm-brightness-lcd -h int:value:$PERCENTAGE "Brightness ${PERCENTAGE}%" -p > $LAST_ID_FILE
+  fi
 else
-  notify-send -a brightness -i xfpm-brightness-lcd -h int:value:$PERCENTAGE "Brightness ${PERCENTAGE}%" -p > $LAST_ID_FILE
+  flock -e $LAST_ID_FILE notify-send -a brightness -i xfpm-brightness-lcd -h int:value:$PERCENTAGE "Brightness ${PERCENTAGE}%" -p > $LAST_ID_FILE
 fi
