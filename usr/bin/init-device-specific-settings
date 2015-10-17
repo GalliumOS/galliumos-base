@@ -46,5 +46,9 @@ chgrp plugdev /sys/class/backlight/intel_backlight/brightness
 chmod 664 /sys/class/backlight/intel_backlight/brightness
 
 #Tweak the bfq scheduler for /dev/sda
-echo 40 > /sys/block/sda/queue/iosched/timeout_sync
-echo 20 > /sys/block/sda/queue/iosched/timeout_async
+echo 80 > /sys/block/sda/queue/iosched/timeout_sync
+echo 40 > /sys/block/sda/queue/iosched/timeout_async
+
+#Reduces kworker threads and improves performance
+echo N > /sys/module/drm_kms_helper/parameters/poll
+
