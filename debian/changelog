@@ -1,3 +1,15 @@
+galliumos-base (1.0.24) vivid-galliumos; urgency=medium
+
+  * Modified dependencies and description
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Sat, 17 Oct 2015 22:16:16 -0600
+
+galliumos-base (1.0.23) vivid-galliumos; urgency=medium
+
+  * Modified init-device-settings
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Sat, 15 Oct 2015 22:16:16 -0600
+
 galliumos-base (1.0.22) vivid-galliumos; urgency=medium
 
   * Modified init-device-settings
