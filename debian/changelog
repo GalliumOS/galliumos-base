@@ -1,3 +1,15 @@
+galliumos-base (1.0.29) vivid-galliumos; urgency=medium
+
+  * fix to hdmi-change
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Sun, 18 Oct 2015 22:16:16 -0600
+
+galliumos-base (1.0.28) vivid-galliumos; urgency=medium
+
+  * 99hdmi udev rules
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Sun, 18 Oct 2015 22:16:16 -0600
+
 galliumos-base (1.0.27) vivid-galliumos; urgency=medium
 
   * fixed hdmi-change
