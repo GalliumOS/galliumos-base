@@ -1,4 +1,16 @@
-galliumos-base (1.0.24) vivid-galliumos; urgency=medium
+galliumos-base (1.0.27) vivid-galliumos; urgency=medium
+
+  * fixed hdmi-change
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Sun, 18 Oct 2015 22:16:16 -0600
+
+galliumos-base (1.0.26) vivid-galliumos; urgency=medium
+
+  * Ok, removing hdmi-change was dumb
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Sun, 18 Oct 2015 22:16:16 -0600
+
+galliumos-base (1.0.25) vivid-galliumos; urgency=medium
 
   * Modified dependencies and description
 

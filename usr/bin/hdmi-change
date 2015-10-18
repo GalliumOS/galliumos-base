@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Run xrandr --auto when hdmi changes are detected
+
+# getXuser() taken from: http://askubuntu.com/questions/20585/how-to-lock-xscreensaver-on-suspend
+# getXuser gets the X user belonging to the display in $displaynum.
+getXuser() {
+    export user=`pinky -fw | awk '{ if ($2 == "pts/'$displaynum'" || $2 == ":'$displaynum'" ) { print $1; exit; } }'`
+}
+
+for x in /tmp/.X11-unix/*; do
+    displaynum=`echo $x | sed s#/tmp/.X11-unix/X##`
+    getXuser;
+    sudo -u $user env DISPLAY=":$displaynum" XAUTHORITY=/home/$user/.Xauthority /usr/bin/xrandr --auto --dpi 133
+done
+exit 0

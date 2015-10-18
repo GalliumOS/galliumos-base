@@ -15,11 +15,13 @@ binary-arch: build
 	install -d debian/tmp/etc/apt/preferences.d
 	install -d debian/tmp/etc/apt/sources.list.d
 	install -d debian/tmp/etc/apt/trusted.gpg.d
+	install -d debian/tmp/etc/udev/rules.d
 	install -d debian/tmp/lib/systemd/system
 	install -d debian/tmp/usr/bin
 	install -p -m 644 etc/apt/preferences.d/* debian/tmp/etc/apt/preferences.d
 	install -p -m 644 etc/apt/sources.list.d/* debian/tmp/etc/apt/sources.list.d
 	install -p -m 644 etc/apt/trusted.gpg.d/* debian/tmp/etc/apt/trusted.gpg.d
+	install -p -m 644 etc/udev/rules.d/* debian/tmp/etc/udev/rules.d
 	install -p -m 644 lib/systemd/system/* debian/tmp/lib/systemd/system
 	install -p -m 755 usr/bin/* debian/tmp/usr/bin
 	dpkg-gencontrol -pgalliumos-base

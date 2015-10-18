@@ -10,7 +10,7 @@ Provides: base
 Architecture: any
 Essential: yes
 Priority: required
-Depends: ubuntu-standard, galliumos-desktop, linux-image-4.1.6-galliumos, linux-headers-4.1.6-galliumos, linux-firmware-image-4.1.6-galliumos
+Depends: ubuntu-standard, galliumos-desktop
 Multi-Arch: foreign
 Description: Gallium OS base files
  This package contains base files for GalliumOS

@@ -44,6 +44,3 @@ done
 #Change permissions on backlight controls
 chgrp plugdev /sys/class/backlight/intel_backlight/brightness
 chmod 664 /sys/class/backlight/intel_backlight/brightness
-
-#Reduces kworker threads and improves performance
-echo N > /sys/module/drm_kms_helper/parameters/poll
