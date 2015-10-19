@@ -1,3 +1,9 @@
+galliumos-base (1.0.31) vivid-galliumos; urgency=medium
+
+  * Changed the udev rule for hdmi changes
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Sun, 18 Oct 2015 22:16:16 -0600
+
 galliumos-base (1.0.30) vivid-galliumos; urgency=medium
 
   * Put back the disabling of polling for drm_kms_helper
