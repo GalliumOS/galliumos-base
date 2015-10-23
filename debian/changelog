@@ -1,3 +1,29 @@
+galliumos-base (1.0.35) vivid-galliumos; urgency=medium
+
+  * Removed chromebook settings and put them in the galliumos-laptop package
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Fri, 23 Oct 2015 22:16:16 -0600
+
+galliumos-base (1.0.34) vivid-galliumos; urgency=medium
+
+  * Calibrate touchpad on startup
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Fri, 23 Oct 2015 22:16:16 -0600
+
+galliumos-base (1.0.33) vivid-galliumos; urgency=medium
+
+  * removed sleep script to run hdmi-change - my issue was due to display power management
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Tue, 20 Oct 2015 22:16:16 -0600
+
+galliumos-base (1.0.32) vivid-galliumos; urgency=medium
+
+  * hdmi-change script doesn't need to loop and sleep
+  * fixed postint script
+  * included sleep script to run hdmi-change
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Tue, 20 Oct 2015 22:16:16 -0600
+
 galliumos-base (1.0.31) vivid-galliumos; urgency=medium
 
   * Changed the udev rule for hdmi changes

@@ -8,14 +8,10 @@ getXuser() {
     export user=`pinky -fw | awk '{ if ($2 == "pts/'$displaynum'" || $2 == ":'$displaynum'" ) { print $1; exit; } }'`
 }
 
-#Some changes happen too fast for the monitor. Run this 5 times for each xserver
-for i in `seq 1 5`
-do
-  for x in /tmp/.X11-unix/*; do
-    displaynum=`echo $x | sed s#/tmp/.X11-unix/X##`
-    getXuser;
-    sudo -u $user env DISPLAY=":$displaynum" XAUTHORITY=/home/$user/.Xauthority /usr/bin/xrandr --auto --dpi 133
-  done
-  sleep 1
+for x in /tmp/.X11-unix/*; do
+  displaynum=`echo $x | sed s#/tmp/.X11-unix/X##`
+  getXuser;
+  sudo -u $user env DISPLAY=":$displaynum" XAUTHORITY=/home/$user/.Xauthority /usr/bin/xrandr --auto --dpi 133
 done
+
 exit 0
