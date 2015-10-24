@@ -1,3 +1,9 @@
+galliumos-base (1.0.36) vivid-galliumos; urgency=medium
+
+  * Better package and renamed init script
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Fri, 23 Oct 2015 22:16:16 -0600
+
 galliumos-base (1.0.35) vivid-galliumos; urgency=medium
 
   * Removed chromebook settings and put them in the galliumos-laptop package

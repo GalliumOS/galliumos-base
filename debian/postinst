@@ -1,3 +1,0 @@
-#!/bin/bash
-
-ln -sf /lib/systemd/system/device-specific-settings.service /etc/systemd/system/multi-user.target.wants/device-specific-settings.service

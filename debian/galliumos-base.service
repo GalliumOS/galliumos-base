@@ -1,0 +1,10 @@
+[Unit]
+Description=Sets some optimizations for GalliumOS
+
+[Service]
+ExecStart=/usr/bin/init-galliumos-opts
+Type=oneshot
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target

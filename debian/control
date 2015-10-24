@@ -2,15 +2,15 @@ Source: galliumos-base
 Section: admin
 Priority: required
 Maintainer: Hugh Greenberg <hugh@galliumos.org>
-XSBC-Original-Maintainer: Hugh Greenberg <hugh@galliumos.org>
-Standards-Version: 3.9.1
+Build-Depends: debhelper (>= 8.0.0),
+               dh-systemd
+Standards-Version: 3.9.6
 
 Package: galliumos-base
 Provides: base
-Architecture: any
+Architecture: all
 Essential: yes
 Priority: required
-Depends: ubuntu-standard, galliumos-desktop
-Multi-Arch: foreign
+Depends: ${misc:Depends}, ubuntu-standard, galliumos-desktop
 Description: Gallium OS base files
  This package contains base files for GalliumOS
