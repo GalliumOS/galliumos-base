@@ -1,3 +1,10 @@
+galliumos-base (1.0.37) vivid-galliumos; urgency=medium
+
+  * Improved /usr/bin/hdmi-change to suspend if lid closed and hdmi cable disconnected
+  * Added resume script to run /usr/bin/hdmi-change on resume 
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Tue, 3 Nov 2015 22:16:16 -0600
+
 galliumos-base (1.0.36) vivid-galliumos; urgency=medium
 
   * Better package and renamed init script

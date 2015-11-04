@@ -14,4 +14,35 @@ for x in /tmp/.X11-unix/*; do
   sudo -u $user env DISPLAY=":$displaynum" XAUTHORITY=/home/$user/.Xauthority /usr/bin/xrandr --auto --dpi 133
 done
 
+LID_STATE="/proc/acpi/button/lid/LID0/state"
+if [ ! -f $LID_STATE ]
+then
+  exit 0
+fi
+
+LID_STATUS=`cat $LID_STATE | awk '{print $2}'`
+if [ "$LID_STATUS" == "open" ]
+then
+  exit 0
+fi
+
+HDMI_STATE="/sys/class/drm/card0-HDMI-A-1/status"
+HDMI_STATUS=`cat $HDMI_STATE`
+if [ ! -f $HDMI_STATE ]
+then
+  exit 0
+fi
+
+if [ "$HDMI_STATUS" == "connected" ]
+then
+  exit 0
+fi
+
+LOCK=`xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/lock-screen-suspend-hibernate`
+if [ "$LOCK" == "true" ]
+then
+  xflock4 &
+fi
+
+systemctl suspend -i
 exit 0
