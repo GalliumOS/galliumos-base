@@ -35,6 +35,7 @@ fi
 
 if [ "$HDMI_STATUS" == "connected" ]
 then
+  echo "hdmi connected"
   exit 0
 fi
 
