@@ -1,3 +1,10 @@
+galliumos-base (1.0.38) vivid-galliumos; urgency=medium
+
+  * Removed Provides line
+  * Changed www.galliumos.org to apt.galliumos.org
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Mon, 16 Nov 2015 22:16:16 -0600
+
 galliumos-base (1.0.37) vivid-galliumos; urgency=medium
 
   * Improved /usr/bin/hdmi-change to suspend if lid closed and hdmi cable disconnected
