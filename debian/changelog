@@ -1,3 +1,9 @@
+galliumos-base (1.0.40) vivid-galliumos; urgency=medium
+
+  * Remove dependency on galliumos-desktop
+
+ -- Andrew Reynhout <andrew@galliumos.org>  Thu, 10 Dec 2015 20:50:46 -0000
+
 galliumos-base (1.0.39) vivid-galliumos; urgency=medium
 
   * Removed Provides line
