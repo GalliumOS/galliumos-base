@@ -1,3 +1,9 @@
+galliumos-base (1.0.42) vivid-galliumos; urgency=medium
+
+  * Removed --dpi from xrandr command in /usr/bin/hdmi-change
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Thu, 10 Dec 2015 20:59:24 -0000
+
 galliumos-base (1.0.41) vivid-galliumos; urgency=medium
 
   * Bump pkg version
