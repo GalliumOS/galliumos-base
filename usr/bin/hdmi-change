@@ -11,7 +11,7 @@ getXuser() {
 for x in /tmp/.X11-unix/*; do
   displaynum=`echo $x | sed s#/tmp/.X11-unix/X##`
   getXuser;
-  sudo -u $user env DISPLAY=":$displaynum" XAUTHORITY=/home/$user/.Xauthority /usr/bin/xrandr --auto --dpi 133
+  sudo -u $user env DISPLAY=":$displaynum" XAUTHORITY=/home/$user/.Xauthority /usr/bin/xrandr --auto
 done
 
 LID_STATE="/proc/acpi/button/lid/LID0/state"
