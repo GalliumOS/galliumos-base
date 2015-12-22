@@ -11,5 +11,5 @@ Architecture: all
 Essential: yes
 Priority: required
 Depends: ${misc:Depends}, ubuntu-standard
-Description: Gallium OS base files
+Description: GalliumOS base files
  This package contains base files for GalliumOS

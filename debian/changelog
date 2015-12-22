@@ -1,3 +1,10 @@
+galliumos-base (1.0.43) vivid-galliumos; urgency=medium
+
+  * Add galliumos-repodist control script and configuration files
+  * Switch vivid-galliumos config to use https URLs
+
+ -- reynhout <reynhout@galliumos.org>  Tue, 22 Dec 2015 18:23:14 +0000
+
 galliumos-base (1.0.42) vivid-galliumos; urgency=medium
 
   * Removed --dpi from xrandr command in /usr/bin/hdmi-change
@@ -8,13 +15,13 @@ galliumos-base (1.0.41) vivid-galliumos; urgency=medium
 
   * Bump pkg version
 
- -- Andrew Reynhout <andrew@galliumos.org>  Thu, 10 Dec 2015 20:59:24 -0000
+ -- reynhout <reynhout@galliumos.org>  Thu, 10 Dec 2015 20:59:24 -0000
 
 galliumos-base (1.0.40) vivid-galliumos; urgency=medium
 
   * Remove dependency on galliumos-desktop
 
- -- Andrew Reynhout <andrew@galliumos.org>  Thu, 10 Dec 2015 20:50:46 -0000
+ -- reynhout <reynhout@galliumos.org>  Thu, 10 Dec 2015 20:50:46 -0000
 
 galliumos-base (1.0.39) vivid-galliumos; urgency=medium
 
