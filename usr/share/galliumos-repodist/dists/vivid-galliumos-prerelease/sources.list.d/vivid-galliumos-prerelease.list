@@ -1,0 +1,2 @@
+deb     https://apt.galliumos.org  vivid-galliumos-prerelease main
+deb-src https://apt.galliumos.org  vivid-galliumos-prerelease main

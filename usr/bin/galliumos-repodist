@@ -1,0 +1,255 @@
+#!/bin/sh
+#
+# galliumos-repodist
+#
+# galliumos repository distribution configuration
+#
+
+BASENAME=$(basename $0)
+SHARE_DIR=/usr/share/galliumos-repodist
+DISTS_DIR=${SHARE_DIR}/dists
+
+usage() {
+  cat <<-EOUSAGE
+	Usage: $BASENAME [OPTION...] [ACTION REPODIST]...
+	  or   $BASENAME [OPTION...] [+|-]REPODIST...
+	  or   $BASENAME [OPTION...] [ACTION]
+	
+	OPTIONS
+	  -v, --verbose    Increase verbosity of output
+	
+	ACTIONS
+	  -e, --enable     Enable a GalliumOS REPODIST
+	  -d, --disable    Disable a GalliumOS REPODIST
+	  -l, --list       List all known GalliumOS REPODISTs
+	  -s, --status     List all known GalliumOS REPODISTs and their status
+	  -h, --help       Show this help info
+	
+	REPODISTS
+	EOUSAGE
+  list_dists --full | sed 's/^/  /'
+}
+
+help() {
+  cat <<-EOHELP
+	$BASENAME enables or disables GalliumOS repository distributions.
+
+	EOHELP
+}
+
+ANSI_RED="\033[31m"
+ANSI_YEL="\033[33m"
+ANSI_CYA="\033[36m"
+ANSI_WHT="\033[37m"
+ANSI_RST="\033[0m"
+
+echo_eval() {
+  [ "$VERBOSE" ] && /bin/echo -e "${ANSI_CYA}${@}${ANSI_RST}"
+  eval $@
+}
+
+echo_info() {
+  [ "$VERBOSE" ] && echo "$BASENAME: ${ANSI_WHT}info${ANSI_RST} $@"
+}
+
+echo_warn() {
+  echo "$BASENAME: ${ANSI_YEL}warning${ANSI_RST} $@" >&2
+}
+
+echo_fatal() {
+  echo "$BASENAME: ${ANSI_RED}fatal${ANSI_RST} $@" >&2
+  exit 1
+}
+
+require_uid0() {
+  local _msg="$@"
+
+  [ "$_msg" ] || _msg="requires root privs"
+  [ $(id -u) = "0" ] || echo_fatal $_msg
+}
+
+init_env() {
+  GA_DISTS=
+  local _dir=
+  local _dist=
+
+  [ ! -d "$DISTS_DIR" ] && echo_fatal "\"${DISTS_DIR}\" is not a directory"
+
+  for _dir in ${DISTS_DIR}/*; do
+    _dist=$(basename $_dir)
+    if [ -d "$_dir" -a -r "${_dir}/preferences.d/${_dist}.pref" ]; then
+      GA_DISTS="$GA_DISTS $_dist"
+    fi
+  done
+}
+
+list_dists() {
+  local _dist=
+  local _pref_fn=
+  local _dist_exp=
+  local _status=
+  local _hdr=
+
+  if [ "$VERBOSE" -a "$(echo $GA_DISTS | wc -w)" -eq 0 ]; then
+    echo "(no repodists found in $DISTS_DIR)"
+  fi
+
+  for _dist in $GA_DISTS; do
+    _status="(disabled)"
+    if [ "$VERBOSE" ]; then
+      [ "$(is_enabled $_dist)" ] && _status="(enabled) "
+      _pref_fn=${DISTS_DIR}/${_dist}/preferences.d/${_dist}.pref
+      _dist_exp=$(grep ^Explanation $_pref_fn | cut -d\  -f2-)
+      echo "${_dist} \t${_status} ${_dist_exp}"
+    else
+      echo "$_dist"
+    fi
+  done
+}
+
+validate_dists() {
+  local _dist=
+  local _prefix=
+  local _dist_wip=
+  local _dist_hit=
+  local _dist_list=
+
+  for _dist in $DISTS_DISABLE; do
+    _dist_hit=
+    for _dist_wip in $_dist vivid-${_dist} vivid-galliumos-${_dist}; do
+      if [ "$(echo " $GA_DISTS " | grep " $_dist_wip ")" ]; then
+        _dist_list="$_dist_list $_dist_wip"
+        _dist_hit=1
+        [ "$_dist" != "$_dist_wip" ] && echo_info "correcting \"$_dist\" to \"$_dist_wip\""
+        break
+      fi
+    done
+    [ -z "$_dist_hit" ] && echo_fatal "unrecognized dist \"$_dist\""
+  done
+  DISTS_DISABLE=$_dist_list
+
+  _dist_list=
+  for _dist in $DISTS_ENABLE; do
+    _dist_hit=
+    for _dist_wip in $_dist vivid-${_dist} vivid-galliumos-${_dist}; do
+      if [ "$(echo " $GA_DISTS " | grep " $_dist_wip ")" ]; then
+        _dist_list="$_dist_list $_dist_wip"
+        _dist_hit=1
+        [ "$_dist" != "$_dist_wip" ] && echo_info "correcting \"$_dist\" to \"$_dist_wip\""
+        break
+      fi
+    done
+    [ -z "$_dist_hit" ] && echo_fatal "unrecognized dist \"$_dist\""
+  done
+  DISTS_ENABLE=$_dist_list
+}
+
+is_enabled() {
+  local _dist=$1
+  local _enabled_dists=
+  local _src_list=
+
+  _src_list=$(cat /etc/apt/sources.list /etc/apt/sources.list.d/*) 2>/dev/null
+  _enabled_dists=$(echo "$_src_list" | grep ^deb | awk '{ print $3 }' | sort | uniq)
+  _enabled_dists=$(echo $_enabled_dists)
+
+  echo " $_enabled_dists " | grep " $_dist "
+}
+
+disable_dists() {
+  local _list_fn=
+  local _pref_fn=
+  local _fn=
+  local _dist=
+
+  [ -z "$DISTS_DISABLE" ] && return 
+
+  require_uid0 "must be root to disable repodists"
+
+  for _dist in $DISTS_DISABLE; do
+    _list_fn="/etc/apt/sources.list.d/${_dist}.list"
+    _pref_fn="/etc/apt/preferences.d/${_dist}.pref"
+
+    echo_info "disabling \"$_dist\""
+
+    echo_eval rm -f $_list_fn
+    echo_eval rm -f $_pref_fn
+
+    if [ "$(is_enabled $_dist)" ]; then
+      echo_warn "configuration for \"$_dist\" is still active in /etc/apt!"
+    fi
+  done
+}
+
+enable_dists() {
+  local _list_fn_src=
+  local _list_fn_dst=
+  local _pref_fn_src=
+  local _pref_fn_dst=
+  local _fn=
+  local _dist=
+
+  [ -z "$DISTS_ENABLE" ] && return 
+
+  require_uid0 "must be root to enable repodists"
+
+  for _dist in $DISTS_ENABLE; do
+    _list_fn_src="${DISTS_DIR}/${_dist}/sources.list.d/${_dist}.list"
+    _list_fn_dst="/etc/apt/sources.list.d/${_dist}.list"
+    _pref_fn_src="${DISTS_DIR}/${_dist}/preferences.d/${_dist}.pref"
+    _pref_fn_dst="/etc/apt/preferences.d/${_dist}.pref"
+
+    echo_info "enabling \"$_dist\""
+
+    if [ ! -r $_list_fn_src -o ! -r $_pref_fn_src ]; then
+      echo_fatal "unable to read config files for \"$_dist\"!"
+    fi
+
+    echo_eval rm -f $_list_fn_dst $_pref_fn_dst
+    echo_eval cp $_list_fn_src $_list_fn_dst
+    echo_eval cp $_pref_fn_src $_pref_fn_dst
+
+    if [ ! "$(is_enabled $_dist)" ]; then
+      echo_warn "configuration for \"$_dist\" is not active in /etc/apt!"
+    fi
+  done
+}
+
+parse_args() {
+  [ -z "$1" ] && set -- "--status"
+
+  while [ "$1" ]; do
+    case "$1" in
+      -l|--list|ls|list) list_dists ; exit 0 ;;
+      -s|--status|status) VERBOSE=1 ; list_dists --status ; exit 0 ;;
+      -h|--help) VERBOSE=1 ; help ; usage ; exit 0 ;;
+      -v|--verbose) VERBOSE=1 ;;
+      -e|--enable)
+        [ -z "$2" ] && echo_fatal "no distribution specified for option \"$1\""
+        DISTS_ENABLE="$DISTS_ENABLE $2 "
+        shift
+        ;;
+      -d|--disable)
+        [ -z "$2" ] && echo_fatal "no distribution specified for option \"$1\""
+        DISTS_DISABLE="$DISTS_DISABLE $2 "
+        shift
+        ;;
+      +*)
+        DISTS_ENABLE="$DISTS_ENABLE $(echo $1 | sed 's/^+//') ";;
+      -*)
+        DISTS_DISABLE="$DISTS_DISABLE $(echo $1 | sed 's/^-//') ";;
+      *) echo_fatal "unrecognized option \"$1\"" ;;
+    esac
+    shift
+  done
+}
+
+main() {
+  init_env
+  parse_args $@
+  validate_dists
+  disable_dists
+  enable_dists
+}
+
+main $@

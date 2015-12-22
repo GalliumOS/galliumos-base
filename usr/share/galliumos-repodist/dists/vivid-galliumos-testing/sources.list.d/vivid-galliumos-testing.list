@@ -1,0 +1,2 @@
+deb     https://apt.galliumos.org  vivid-galliumos-testing main
+deb-src https://apt.galliumos.org  vivid-galliumos-testing main

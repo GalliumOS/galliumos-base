@@ -1,0 +1,4 @@
+Explanation: GalliumOS "prerelease" packages
+Package: *
+Pin: release n=vivid-galliumos-prerelease
+Pin-Priority: 9999
