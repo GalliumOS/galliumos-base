@@ -1,2 +1,2 @@
-deb     https://apt.galliumos.org vivid-galliumos main
-deb-src https://apt.galliumos.org vivid-galliumos main
+deb     http://apt.galliumos.org vivid-galliumos main
+deb-src http://apt.galliumos.org vivid-galliumos main

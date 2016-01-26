@@ -1,3 +1,9 @@
+galliumos-base (1.0.44) vivid-galliumos; urgency=medium
+
+  * Revert vivid-galliumos config to use http URLs
+
+ -- reynhout <reynhout@galliumos.org>  Tue, 26 Jan 2016 19:51:15 +0000
+
 galliumos-base (1.0.43) vivid-galliumos; urgency=medium
 
   * Add galliumos-repodist control script and configuration files
