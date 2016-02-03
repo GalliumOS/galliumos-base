@@ -1,3 +1,9 @@
+galliumos-base (1.0.45) vivid-galliumos; urgency=medium
+
+  * Use http for prerelease and testing repodists
+
+ -- reynhout <reynhout@galliumos.org>  Wed, 03 Feb 2016 02:14:12 +0000
+
 galliumos-base (1.0.44) vivid-galliumos; urgency=medium
 
   * Revert vivid-galliumos config to use http URLs
