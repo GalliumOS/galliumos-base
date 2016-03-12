@@ -1,3 +1,10 @@
+galliumos-base (2.0) xenial; urgency=medium
+
+  * Package for 2.0
+  * Updated apt repos
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Fri, 11 Mar 2016 02:14:12 +0000
+
 galliumos-base (1.0.45) vivid-galliumos; urgency=medium
 
   * Use http for prerelease and testing repodists

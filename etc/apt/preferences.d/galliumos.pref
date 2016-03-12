@@ -1,4 +1,4 @@
 Explanation: GalliumOS release packages
 Package: *
-Pin: release n=vivid-galliumos
+Pin: release n=xenial
 Pin-Priority: 9999
