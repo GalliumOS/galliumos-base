@@ -1,3 +1,9 @@
+galliumos-base (2.0.1) xenial; urgency=medium
+
+  * Added /etc/NetworkManager/NetworkManager.conf
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Tue, 15 Mar 2016 02:14:12 +0000
+
 galliumos-base (2.0) xenial; urgency=medium
 
   * Package for 2.0
