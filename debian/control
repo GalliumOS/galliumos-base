@@ -11,5 +11,6 @@ Architecture: all
 Essential: yes
 Priority: required
 Depends: ${misc:Depends}, ubuntu-standard
+Replaces: network-manager
 Description: GalliumOS base files
  This package contains base files for GalliumOS
