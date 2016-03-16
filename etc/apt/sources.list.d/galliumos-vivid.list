@@ -1,0 +1,4 @@
+deb     http://apt.galliumos.org vivid-galliumos main
+deb-src http://apt.galliumos.org vivid-galliumos main
+deb     http://apt.galliumos.org vivid-security main
+deb-src http://apt.galliumos.org vivid-security main

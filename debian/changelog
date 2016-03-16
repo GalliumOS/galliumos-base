@@ -1,9 +1,14 @@
-galliumos-base (2.0) xenial; urgency=medium
+galliumos-base (1.0.47) vivid-galliumos; urgency=medium
 
-  * Package for 2.0
-  * Updated apt repos
+  * Added /etc/NetworkManager/NetworkManager.conf to fix connection issues
 
- -- Hugh Greenberg <hugh@galliumos.org>  Fri, 11 Mar 2016 02:14:12 +0000
+ -- Hugh Greenberg <hugh@galliumos.org>  Tue, 15 Mar 2016 02:14:12 +0000
+
+galliumos-base (1.0.46) vivid-galliumos; urgency=medium
+
+  * Added security updates repo
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Fri, 05 Feb 2016 02:14:12 +0000
 
 galliumos-base (1.0.45) vivid-galliumos; urgency=medium
 
