@@ -10,7 +10,7 @@ Package: galliumos-base
 Architecture: all
 Essential: yes
 Priority: required
-Replaces: systemd
+Replaces: systemd, network-manager
 Depends: ${misc:Depends}, ubuntu-standard
 Description: GalliumOS base files
  This package contains base files for GalliumOS

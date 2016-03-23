@@ -1,3 +1,9 @@
+galliumos-base (2.0.3) xenial; urgency=medium
+
+  * Added network-manager to Replaces
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Tue, 22 Mar 2016 02:14:12 +0000
+
 galliumos-base (2.0.2) xenial; urgency=medium
 
   * Blacklisted parallel port modules
