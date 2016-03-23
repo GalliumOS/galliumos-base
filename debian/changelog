@@ -1,3 +1,11 @@
+galliumos-base (2.0.2) xenial; urgency=medium
+
+  * Blacklisted parallel port modules
+  * Included /etc/sysctl.d/10-galliumos.conf instead of a custom procps package for optimizations
+  * Included /etc/systemd/logind.conf to set HoldoffTimeoutSec to 0
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Tue, 22 Mar 2016 02:14:12 +0000
+
 galliumos-base (2.0.1) xenial; urgency=medium
 
   * Added /etc/NetworkManager/NetworkManager.conf
