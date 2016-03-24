@@ -116,7 +116,7 @@ validate_dists() {
 
   for _dist in $DISTS_DISABLE; do
     _dist_hit=
-    for _dist_wip in $_dist vivid-${_dist} vivid-galliumos-${_dist}; do
+    for _dist_wip in $_dist xenial-${_dist} xenial-galliumos-${_dist}; do
       if [ "$(echo " $GA_DISTS " | grep " $_dist_wip ")" ]; then
         _dist_list="$_dist_list $_dist_wip"
         _dist_hit=1
@@ -131,7 +131,7 @@ validate_dists() {
   _dist_list=
   for _dist in $DISTS_ENABLE; do
     _dist_hit=
-    for _dist_wip in $_dist vivid-${_dist} vivid-galliumos-${_dist}; do
+    for _dist_wip in $_dist xenial-${_dist} xenial-galliumos-${_dist}; do
       if [ "$(echo " $GA_DISTS " | grep " $_dist_wip ")" ]; then
         _dist_list="$_dist_list $_dist_wip"
         _dist_hit=1

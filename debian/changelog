@@ -1,3 +1,23 @@
+galliumos-base (2.0.6) xenial; urgency=medium
+
+  * Moved 10-galliumos.conf to 20-galliumos.conf
+  * Added a postinst script to call sysctl -p
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Wed, 23 Mar 2016 02:14:12 +0000
+
+galliumos-base (2.0.5) xenial; urgency=medium
+
+  * Changed apt sources.list
+  * Changed repodist script and apt files
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Wed, 23 Mar 2016 02:14:12 +0000
+
+galliumos-base (2.0.4) xenial; urgency=medium
+
+  * Changed apt sources.list
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Tue, 22 Mar 2016 02:14:12 +0000
+
 galliumos-base (2.0.3) xenial; urgency=medium
 
   * Added network-manager to Replaces

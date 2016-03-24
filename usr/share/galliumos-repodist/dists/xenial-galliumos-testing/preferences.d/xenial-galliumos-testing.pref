@@ -1,4 +1,4 @@
 Explanation: GalliumOS "testing" packages
 Package: *
-Pin: release n=vivid-galliumos-testing
+Pin: release n=xenial-testing
 Pin-Priority: 10090
