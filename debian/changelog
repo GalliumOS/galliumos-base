@@ -1,3 +1,9 @@
+galliumos-base (2.0.7) xenial; urgency=medium
+
+  * Update filenames to match new repodist names
+
+ -- reynhout <reynhout@galliumos.org>  Tue, 29 Mar 2016 17:37:57 +0000
+
 galliumos-base (2.0.6) xenial; urgency=medium
 
   * Moved 10-galliumos.conf to 20-galliumos.conf
