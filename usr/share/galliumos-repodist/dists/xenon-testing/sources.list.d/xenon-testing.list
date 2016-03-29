@@ -1,2 +1,2 @@
-deb     http://apt.galliumos.org  xenial-testing main
-deb-src http://apt.galliumos.org  xenial-testing main
+deb     http://apt.galliumos.org  xenon-testing main
+deb-src http://apt.galliumos.org  xenon-testing main

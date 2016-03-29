@@ -100,7 +100,7 @@ list_dists() {
       [ "$(is_enabled $_dist)" ] && _status="(enabled) "
       _pref_fn=${DISTS_DIR}/${_dist}/preferences.d/${_dist}.pref
       _dist_exp=$(grep ^Explanation $_pref_fn | cut -d\  -f2-)
-      echo "${_dist} \t${_status} ${_dist_exp}"
+      printf "%-27s %-11s %-s\n" "${_dist}" "${_status}" "${_dist_exp}"
     else
       echo "$_dist"
     fi
@@ -116,7 +116,7 @@ validate_dists() {
 
   for _dist in $DISTS_DISABLE; do
     _dist_hit=
-    for _dist_wip in $_dist xenial-${_dist} xenial-galliumos-${_dist}; do
+    for _dist_wip in $_dist xenon-${_dist}; do
       if [ "$(echo " $GA_DISTS " | grep " $_dist_wip ")" ]; then
         _dist_list="$_dist_list $_dist_wip"
         _dist_hit=1
@@ -131,7 +131,7 @@ validate_dists() {
   _dist_list=
   for _dist in $DISTS_ENABLE; do
     _dist_hit=
-    for _dist_wip in $_dist xenial-${_dist} xenial-galliumos-${_dist}; do
+    for _dist_wip in $_dist xenon-${_dist}; do
       if [ "$(echo " $GA_DISTS " | grep " $_dist_wip ")" ]; then
         _dist_list="$_dist_list $_dist_wip"
         _dist_hit=1

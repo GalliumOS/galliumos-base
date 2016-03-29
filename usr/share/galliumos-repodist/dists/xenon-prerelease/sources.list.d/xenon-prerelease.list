@@ -1,2 +1,2 @@
-deb     http://apt.galliumos.org  xenial-prerelease main
-deb-src http://apt.galliumos.org  xenial-prerelease main
+deb     http://apt.galliumos.org  xenon-prerelease main
+deb-src http://apt.galliumos.org  xenon-prerelease main

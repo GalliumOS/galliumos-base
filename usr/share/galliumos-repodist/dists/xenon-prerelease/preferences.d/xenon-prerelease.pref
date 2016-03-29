@@ -1,4 +1,4 @@
 Explanation: GalliumOS "prerelease" packages
 Package: *
-Pin: release n=xenial-prerelease
+Pin: release n=xenon-prerelease
 Pin-Priority: 9999
