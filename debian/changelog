@@ -1,3 +1,10 @@
+galliumos-base (2.0.9) xenon; urgency=medium
+
+  * Removed the parallel port module blacklist file
+  * Replaced /etc/module-load.d/cups-filters.conf to comment out modules
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Sat, 23 Apr 2016 21:08:36 +0000
+
 galliumos-base (2.0.8) xenon; urgency=medium
 
   * Update filenames and contents for new repodist "xenon"
