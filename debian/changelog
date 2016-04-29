@@ -1,3 +1,9 @@
+galliumos-base (2.0.10) xenon; urgency=medium
+
+  * Removed the /etc/NetworkManager/NetworkManager.conf file
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Thu, 28 Apr 2016 21:08:36 +0000
+
 galliumos-base (2.0.9) xenon; urgency=medium
 
   * Removed the parallel port module blacklist file
