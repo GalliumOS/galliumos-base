@@ -1,0 +1,56 @@
+#!/bin/sh
+#
+# Usage: galliumos-upgrade-1to2 --this-is-experimental-and-might-break
+#
+# WARNING: this is an experimental process, truly.
+#
+# Don't try it unless you're prepared to restore from a backup. 
+# After _very_ sparse testing from a fresh 1.0 install, it does
+# seem to be functional, but more testing is required.
+#
+
+set -e
+
+BASE_PKG="https://galliumos.org/keep/galliumos-base_2.0.9_all.deb"
+MAGIC_ARG="--this-is-experimental-and-might-break"
+
+fatal() { echo "$0: fatal: $*"; exit 1; }
+avail() { echo $(stat -f --printf="%a * %s / 1024 / 1024\n" / | bc); }
+
+## must be root, have 2GB disk available, and use the magic arg
+[ "$(id -u)" = "0" ] ||      fatal "requires root privileges"
+[ "$(avail)" -gt "2048" ] || fatal "requires 2GB available disk space"
+[ "$1" = "$MAGIC_ARG" ] ||   fatal "requires magic arg on command line"
+
+## ok, here we go...
+
+## disable opt repodists so we don't have lingering vivid artifacts
+galliumos-repodist --disable prerelease
+galliumos-repodist --disable testing
+
+## get the new pkg with updated repodist config
+curl -o /tmp/galliumos-base.deb "$BASE_PKG"
+dpkg -i /tmp/galliumos-base.deb
+
+## clean up malingerers
+sed -i "/galliumos/d;s/vivid/xenial/" /etc/apt/sources.list
+rm -f /etc/apt/trusted.gpg.d/galliumos-vivid.gpg 
+rm -f /etc/apt/sources.list.d/galliumos-vivid.list
+
+## enable xenon-testing
+## FIXME needed until xf86-input-cmt >= 2.0.27 is promoted to xenon stable
+galliumos-repodist --enable testing
+
+## remove problematic pkgs
+apt-get -y remove libjpeg-progs libjpeg-turbo-progs
+
+## update manifests, do the needful
+apt-get update
+apt-get -y --force-yes dist-upgrade
+apt-get -y autoremove
+apt-get clean
+apt-get autoclean
+
+## and we're done
+echo
+echo "$0: ok, we've done our best it's time to reboot."
