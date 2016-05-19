@@ -1,3 +1,10 @@
+galliumos-base (2.0.11) xenon; urgency=medium
+
+  * Removed setting the minimum gpu frequency
+  * Added /lib/systemd/system-sleep/wpasupplicant to disable the original
+
+ -- Hugh Greenberg <hugh@galliumos.org>  Wed, 18 May 2016 21:08:36 +0000
+
 galliumos-base (2.0.10) xenon; urgency=medium
 
   * Removed the /etc/NetworkManager/NetworkManager.conf file

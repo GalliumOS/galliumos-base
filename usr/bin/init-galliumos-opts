@@ -1,15 +1,4 @@
 #!/bin/bash
 
-#Lower the min frequency of the gpu
-MIN_FREQ="/sys/class/drm/card0/gt_min_freq_mhz"
-for i in 100 200 300
-do
-   echo $i > $MIN_FREQ > /dev/null 2>&1
-   if [ $? == "0" ]
-   then
-      break
-   fi
-done
-
 #Disable polling for monitors
 echo N > /sys/module/drm_kms_helper/parameters/poll
