@@ -8,11 +8,19 @@
 # After _very_ sparse testing from a fresh 1.0 install, it does
 # seem to be functional, but more testing is required.
 #
+# There have been reports of outright failures (all seem to be due
+# to peculiar APT configs, which we now try to be more careful of),
+# but the larger concern is that some package might update partially,
+# leaving some traces of old, invalid, or broken config which might
+# cause difficult to debug problems in the future. No evidence of
+# this being a practical issue at this time, however.
+#
 
 set -e
 
 BASE_PKG="https://galliumos.org/keep/galliumos-base_2.0.9_all.deb"
 MAGIC_ARG="--this-is-experimental-and-might-break"
+APT_PRESERVE="/var/cache/apt/sources-all.vivid"
 
 fatal() { echo "$0: fatal: $*"; exit 1; }
 avail() { echo $(stat -f --printf="%a * %s / 1024 / 1024\n" / | bc); }
@@ -21,6 +29,29 @@ avail() { echo $(stat -f --printf="%a * %s / 1024 / 1024\n" / | bc); }
 [ "$(id -u)" = "0" ] ||      fatal "requires root privileges"
 [ "$(avail)" -gt "2048" ] || fatal "requires 2GB available disk space"
 [ "$1" = "$MAGIC_ARG" ] ||   fatal "requires magic arg on command line"
+[ "$(dpkg -l galliumos-desktop 2>/dev/null)" ] || fatal "galliumos-desktop is not installed, upgrade would fail"
+
+## check for other package sources that might cause problems:
+##   known good:  galliumos, ubuntu
+##   probably OK: chrome, steam
+##   untested:    wine, skype, etc etc
+APT_SRCS=$(grep -h "^deb" /etc/apt/sources.list /etc/apt/sources.list.d/*)
+APT_ADD=$(echo "$APT_SRCS" | grep -vi galliumos.org | grep -vi ubuntu.com)
+
+if [ "$APT_ADD" ]; then
+  echo
+  echo "WARNING: you have additional package sources configured:"
+  echo
+  echo "$APT_ADD" | sed 's/^/  /'
+  echo
+  echo "Packages from these sources might require manual update or reinstall."
+  echo "Current config will be preserved in ${APT_PRESERVE}."
+  echo
+  echo "Press [Enter] to continue, or [Ctrl+C] to cancel: \c"
+  read cr
+fi
+
+echo "$APT_SRCS" > "$APT_PRESERVE"
 
 ## ok, here we go...
 
@@ -29,28 +60,59 @@ galliumos-repodist --disable prerelease
 galliumos-repodist --disable testing
 
 ## get the new pkg with updated repodist config
-curl -o /tmp/galliumos-base.deb "$BASE_PKG"
+echo
+echo "Fetching and installing new galliumos-base package..."
+curl --progress-bar -o /tmp/galliumos-base.deb "$BASE_PKG"
 dpkg -i /tmp/galliumos-base.deb
 
-## clean up malingerers
-sed -i "/galliumos/d;s/vivid/xenial/" /etc/apt/sources.list
+echo
+echo "Updating package sources for GalliumOS 2.0..."
+## preserve /etc/apt/sources.list in case of manually-added PPAs etc
+cp /etc/apt/sources.list /etc/apt/sources.list.vivid
+## convert ubuntu.com sources from vivid to xenial
+sed -i "s/^\(deb..*\.ubuntu\.com\/ubuntu\/*\) vivid/\1 xenial/" /etc/apt/sources.list
+
+## remove any lingering galliumos-vivid config
+sed -i "/galliumos.org/d" /etc/apt/sources.list
 rm -f /etc/apt/trusted.gpg.d/galliumos-vivid.gpg 
 rm -f /etc/apt/sources.list.d/galliumos-vivid.list
 
-## enable xenon-testing
-## FIXME needed until xf86-input-cmt >= 2.0.27 is promoted to xenon stable
-galliumos-repodist --enable testing
-
+echo
+echo "Preparing to upgrade..."
 ## remove problematic pkgs
+set +e
 apt-get -y remove libjpeg-progs libjpeg-turbo-progs
+## stop xscreensaver to squelch msg
+killall xscreensaver
+set -e
 
+echo
+echo "Updating package manifests and installing updated packages..."
 ## update manifests, do the needful
 apt-get update
+set +e
 apt-get -y --force-yes dist-upgrade
+
+if [ "$?" = "1" ]; then
+  echo
+  echo "$0: There have been errors!"
+  echo
+  echo "  If the error messages above don't look too serious, it should be"
+  echo "  safe to continue. You may also choose to cancel and clean things"
+  echo "  up manually."
+  echo
+  echo "Press [Enter] to continue, or [Ctrl+C] to cancel: \c"
+  read cr
+fi
+
+echo
+echo "Removing old packages..."
+## OK so far. Here's where it might get sketchy with odd pkg srcs,
+## but there's no way to be sure so we just plunge ahead forthwith.
 apt-get -y autoremove
 apt-get clean
 apt-get autoclean
 
 ## and we're done
 echo
-echo "$0: ok, we've done our best it's time to reboot."
+echo "$0: Finished Time to reboot and see how well it worked!"
