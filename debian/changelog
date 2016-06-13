@@ -1,3 +1,9 @@
+galliumos-base (1.0.50) vivid-galliumos; urgency=medium
+
+  * improve galliumos-upgrade-1to2
+
+ -- reynhout <reynhout@galliumos.org>  Mon, 13 Jun 2016 21:39:10 +0000
+
 galliumos-base (1.0.49) vivid-galliumos; urgency=medium
 
   * add (experimental) galliumos-upgrade-1to2 script
