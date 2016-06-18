@@ -1,6 +1,10 @@
 galliumos-base (1.0.50) vivid-galliumos; urgency=medium
 
   * improve galliumos-upgrade-1to2
+    - add some error checking
+    - preserve configs in case of problems
+    - add info messages
+    - prevent xscreensaver message
 
  -- reynhout <reynhout@galliumos.org>  Mon, 13 Jun 2016 21:39:10 +0000
 

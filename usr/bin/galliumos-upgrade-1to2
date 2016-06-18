@@ -93,14 +93,22 @@ apt-get update
 set +e
 apt-get -y --force-yes dist-upgrade
 
-if [ "$?" = "1" ]; then
-  echo
-  echo "$0: There have been errors!"
-  echo
-  echo "  If the error messages above don't look too serious, it should be"
-  echo "  safe to continue. You may also choose to cancel and clean things"
-  echo "  up manually."
-  echo
+if [ "$?" != "0" ]; then
+  cat <<EOF
+
+$0: There have been errors!
+
+  If the error messages above don't look too serious, it should be
+  safe to continue. You may also choose to cancel and clean things
+  up manually.
+
+  There are two steps remaining. If you choose to cancel here, be
+  sure to run these manually after cleanup.
+
+    apt-get autoremove  ## remove old packages
+    apt-get clean       ## clear package cache, reclaim disk space
+
+EOF
   echo "Press [Enter] to continue, or [Ctrl+C] to cancel: \c"
   read cr
 fi
@@ -111,8 +119,7 @@ echo "Removing old packages..."
 ## but there's no way to be sure so we just plunge ahead forthwith.
 apt-get -y autoremove
 apt-get clean
-apt-get autoclean
 
 ## and we're done
 echo
-echo "$0: Finished Time to reboot and see how well it worked!"
+echo "$0: Finished. Time to reboot and see how well it worked!"
