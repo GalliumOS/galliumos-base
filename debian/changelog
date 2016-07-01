@@ -1,3 +1,12 @@
+galliumos-base (2.0.12) xenon; urgency=medium
+
+  * limit is_enabled check to *.list files
+  * disable testing and prerelease repodists in postinst
+    - this should be removed in future package versions, it is only
+      desired to put users who are updating on the stable track
+
+ -- reynhout <reynhout@galliumos.org>  Fri, 01 Jul 2016 19:09:59 +0000
+
 galliumos-base (2.0.11) xenon; urgency=medium
 
   * Removed setting the minimum gpu frequency
