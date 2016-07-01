@@ -149,7 +149,7 @@ is_enabled() {
   local _enabled_dists=
   local _src_list=
 
-  _src_list=$(cat /etc/apt/sources.list /etc/apt/sources.list.d/*) 2>/dev/null
+  _src_list=$(cat /etc/apt/sources.list /etc/apt/sources.list.d/*.list) 2>/dev/null
   _enabled_dists=$(echo "$_src_list" | grep ^deb | awk '{ print $3 }' | sort | uniq)
   _enabled_dists=$(echo $_enabled_dists)
 
