@@ -1,5 +1,10 @@
 #! /bin/sh
 
+## disable testing and prerelease repodists.
+## only in this debian package version, remove in future versions!
+/usr/bin/galliumos-repodist --disable xenon-prerelease
+/usr/bin/galliumos-repodist --disable xenon-testing
+
 sysctl --system
 
 exit 0
