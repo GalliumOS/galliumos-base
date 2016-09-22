@@ -1,5 +1,5 @@
 [Unit]
-Description=Sets some optimizations for GalliumOS
+Description=GalliumOS system customization (galliumos-base)
 
 [Service]
 ExecStart=/usr/bin/init-galliumos-opts

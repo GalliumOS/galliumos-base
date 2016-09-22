@@ -1,3 +1,9 @@
+galliumos-base (2.0.13) xenon; urgency=medium
+
+  * aesthetic-only: fix syntax of systemd status messages
+
+ -- reynhout <reynhout@galliumos.org>  Thu, 22 Sep 2016 17:36:21 +0000
+
 galliumos-base (2.0.12) xenon; urgency=medium
 
   * limit is_enabled check to *.list files
