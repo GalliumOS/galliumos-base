@@ -1,3 +1,10 @@
+galliumos-base (2.0.14) xenon; urgency=medium
+
+  * remove disabling of testing and prerelease repodists from postinst
+    - see 2.0.12
+
+ -- reynhout <reynhout@galliumos.org>  Sun, 25 Sep 2016 23:09:39 +0000
+
 galliumos-base (2.0.13) xenon; urgency=medium
 
   * aesthetic-only: fix syntax of systemd status messages
