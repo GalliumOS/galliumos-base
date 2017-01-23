@@ -1,3 +1,9 @@
+galliumos-base (2.0.16) xenon; urgency=medium
+
+  * rename custom GRUB config for lexical load order
+
+ -- reynhout <reynhout@galliumos.org>  Mon, 23 Jan 2017 03:23:47 +0000
+
 galliumos-base (2.0.15) xenon; urgency=medium
 
   * add base GRUB config to /etc/default/grub.d
