@@ -1,3 +1,9 @@
+galliumos-base (2.0.15) xenon; urgency=medium
+
+  * add base GRUB config to /etc/default/grub.d
+
+ -- reynhout <reynhout@galliumos.org>  Mon, 23 Jan 2017 02:56:01 +0000
+
 galliumos-base (2.0.14) xenon; urgency=medium
 
   * remove disabling of testing and prerelease repodists from postinst
