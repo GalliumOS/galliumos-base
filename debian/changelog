@@ -1,3 +1,9 @@
+galliumos-base (2.0.17) xenon; urgency=medium
+
+  * use darker trianglify image for default GRUB background
+
+ -- reynhout <reynhout@galliumos.org>  Mon, 23 Jan 2017 03:32:16 +0000
+
 galliumos-base (2.0.16) xenon; urgency=medium
 
   * rename custom GRUB config for lexical load order
