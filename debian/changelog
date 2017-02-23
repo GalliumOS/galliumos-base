@@ -1,3 +1,9 @@
+galliumos-base (2.0.20) xenon; urgency=medium
+
+  * only update custom.cfg when *not* running under chroot!
+
+ -- reynhout <reynhout@galliumos.org>  Thu, 23 Feb 2017 05:44:43 +0000
+
 galliumos-base (2.0.19) xenon; urgency=medium
 
   * update default GRUB config
