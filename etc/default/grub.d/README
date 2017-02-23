@@ -1,0 +1,9 @@
+# /etc/default/grub.d
+#
+# Files ending in ".cfg" are sourced (in lexical order) by grub-mkconfig,
+# *after* /etc/default/grub
+#
+# Local overrides or customizations should be added in non-conflicting
+# files, ideally in the 90-99 set, e.g. "90-localcustomizations.cfg" or
+# "99-mychanges.cfg".
+#
