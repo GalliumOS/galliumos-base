@@ -1,3 +1,9 @@
+galliumos-base (2.0.19) xenon; urgency=medium
+
+  * update default GRUB config
+
+ -- reynhout <reynhout@galliumos.org>  Thu, 23 Feb 2017 00:56:39 +0000
+
 galliumos-base (2.0.18) xenon; urgency=medium
 
   * use solidblue for default GRUB background
