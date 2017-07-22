@@ -1,4 +1,4 @@
-galliumos-base (2.0.22) xenon; urgency=medium
+galliumos-base (2.0.22.1) xenon; urgency=medium
 
   * add xenon-devel to repodists
 
