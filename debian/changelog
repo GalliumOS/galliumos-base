@@ -1,3 +1,9 @@
+galliumos-base (2.0.22) xenon; urgency=medium
+
+  * add xenon-devel to repodists
+
+ -- reynhout <reynhout@galliumos.org>  Sat, 22 Jul 2017 01:20:28 +0000
+
 galliumos-base (2.0.21) xenon; urgency=medium
 
   * handle chroot more gracefully

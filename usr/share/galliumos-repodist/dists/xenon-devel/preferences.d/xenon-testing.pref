@@ -1,0 +1,4 @@
+Explanation: GalliumOS "devel" packages
+Package: *
+Pin: release n=xenon-devel
+Pin-Priority: 10090
