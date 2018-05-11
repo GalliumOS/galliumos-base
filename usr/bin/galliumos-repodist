@@ -5,6 +5,8 @@
 # galliumos repository distribution configuration
 #
 
+CODENAME=bismuth
+
 BASENAME=$(basename $0)
 SHARE_DIR=/usr/share/galliumos-repodist
 DISTS_DIR=${SHARE_DIR}/dists
@@ -116,7 +118,7 @@ validate_dists() {
 
   for _dist in $DISTS_DISABLE; do
     _dist_hit=
-    for _dist_wip in $_dist xenon-${_dist}; do
+    for _dist_wip in $_dist ${CODENAME}-${_dist}; do
       if [ "$(echo " $GA_DISTS " | grep " $_dist_wip ")" ]; then
         _dist_list="$_dist_list $_dist_wip"
         _dist_hit=1
@@ -131,7 +133,7 @@ validate_dists() {
   _dist_list=
   for _dist in $DISTS_ENABLE; do
     _dist_hit=
-    for _dist_wip in $_dist xenon-${_dist}; do
+    for _dist_wip in $_dist ${CODENAME}-${_dist}; do
       if [ "$(echo " $GA_DISTS " | grep " $_dist_wip ")" ]; then
         _dist_list="$_dist_list $_dist_wip"
         _dist_hit=1

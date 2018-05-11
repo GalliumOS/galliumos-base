@@ -1,4 +1,4 @@
 Explanation: GalliumOS "testing" packages
 Package: *
-Pin: release n=xenon-testing
-Pin-Priority: 10090
+Pin: release n=bismuth-testing
+Pin-Priority: 920

@@ -1,2 +1,2 @@
-deb     http://apt.galliumos.org xenon main
-deb-src http://apt.galliumos.org xenon main
+deb     http://apt.galliumos.org bismuth main
+deb-src http://apt.galliumos.org bismuth main

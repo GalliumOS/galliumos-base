@@ -1,4 +1,4 @@
 Explanation: GalliumOS "devel" packages
 Package: *
-Pin: release n=xenon-devel
-Pin-Priority: 10090
+Pin: release n=bismuth-devel
+Pin-Priority: 930
