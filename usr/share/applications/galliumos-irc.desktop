@@ -1,0 +1,9 @@
+[Desktop Entry]
+Categories=System;Support
+Comment=IRC Freenode #galliumos
+Exec=exo-open --launch WebBrowser https://galliumos.org/irc
+Icon=galliumos-chat
+Keywords=Help;Chat;GalliumOS;IRC
+Name=GalliumOS Chat
+Terminal=false
+Type=Application
