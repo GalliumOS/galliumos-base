@@ -1,10 +1,11 @@
-galliumos-base (2.9903) bismuth; urgency=medium
+galliumos-base (2.9905) bismuth; urgency=medium
 
   * Prepare for GalliumOS 3.0
   * Add RESUME=none to initramfs-tools/conf.d/resume
   * Add galliumos-irc desktop file
+  * Make galliumos-repodist slightly smarter
 
- -- reynhout <reynhout@galliumos.org>  Sun, 06 May 2018 07:04:41 +0000
+ -- reynhout <reynhout@galliumos.org>  Tue, 19 Jun 2018 05:05:22 +0000
 
 galliumos-base (2.0.22.1) xenon; urgency=medium
 

@@ -222,33 +222,52 @@ parse_args() {
 
   while [ "$1" ]; do
     case "$1" in
-      -l|--list|ls|list) list_dists ; exit 0 ;;
-      -s|--status|status) VERBOSE=1 ; list_dists --status ; exit 0 ;;
-      -h|--help) VERBOSE=1 ; help ; usage ; exit 0 ;;
-      -v|--verbose) VERBOSE=1 ;;
-      -e|--enable)
-        [ -z "$2" ] && echo_fatal "no distribution specified for option \"$1\""
+      -l|--list|ls|list)  list_dists; exit 0 ;;
+      -s|--status|status) VERBOSE=1; list_dists --status; exit 0 ;;
+      -h|--help)          VERBOSE=1; help; usage; exit 0 ;;
+      -v|--verbose)       VERBOSE=1; IN_CMD= ;;
+      -e|--enable|enable)
+        [ -z "$2" ] && echo_fatal "no distribution specified"
         DISTS_ENABLE="$DISTS_ENABLE $2 "
+        IN_CMD=enable
         shift
         ;;
-      -d|--disable)
-        [ -z "$2" ] && echo_fatal "no distribution specified for option \"$1\""
+      -d|--disable|disable)
+        [ -z "$2" ] && echo_fatal "no distribution specified"
         DISTS_DISABLE="$DISTS_DISABLE $2 "
+        IN_CMD=disable
         shift
         ;;
-      +*)
-        DISTS_ENABLE="$DISTS_ENABLE $(echo $1 | sed 's/^+//') ";;
-      -*)
-        DISTS_DISABLE="$DISTS_DISABLE $(echo $1 | sed 's/^-//') ";;
-      *) echo_fatal "unrecognized option \"$1\"" ;;
+      +*) DISTS_ENABLE="$DISTS_ENABLE $(echo $1 | sed 's/^+//') " ;;
+      -*) DISTS_DISABLE="$DISTS_DISABLE $(echo $1 | sed 's/^-//') " ;;
+      *)
+        if [ "$IN_CMD" = "enable" ]; then
+          DISTS_ENABLE="$DISTS_ENABLE $1 "
+        elif [ "$IN_CMD" = "disable" ]; then
+          DISTS_DISABLE="$DISTS_DISABLE $1 "
+        else
+          echo_fatal "unrecognized option \"$1\""
+        fi
+        ;;
     esac
     shift
   done
 }
 
+check_perms() {
+  if [ "$(id -u)" -eq 0 ]; then
+    :
+  elif [ "$(groups | grep -w sudo)" ]; then
+    exec sudo $0 $@
+  else
+    echo_fatal "must be root or in group \"sudo\" to modify repodist config."
+  fi
+}
+
 main() {
   init_env
   parse_args $@
+  [ -n "$DISTS_ENABLE" -o -n "$DISTS_DISABLE" ] && check_perms $@
   validate_dists
   disable_dists
   enable_dists
