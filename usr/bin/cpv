@@ -1,0 +1,38 @@
+#!/bin/sh
+#
+# cpv - copy and verify
+#
+
+BASENAME=$(basename $0)
+HASH="md5"
+
+usage()  { echo "Usage: $BASENAME SOURCE DEST"; }
+emit()   { echo "$BASENAME: $*"; }
+fatal()  { emit "$*"; exit 1; }
+tstamp() { date "+%s"; }
+
+[ -z "$1" -o -z "$2" -o -n "$3" ] && usage && exit 1
+src=$1
+dst=$2
+
+[ ! -r $src ] && fatal "'$src': No such file or directory"
+[ -d $dst ] && dst="$dst/$(basename $src)"
+[ ! -w $dst -a ! -w $(dirname $dst) ] && fatal "'$dst': Permission denied"
+
+t1=$(tstamp)
+cp "$src" "$dst"
+
+t2=$(tstamp)
+src_size=$(stat -c '%s' "$src")
+src_hash=$(md5sum "$src" | cut -d\  -f1)
+dst_hash=$(head -c $src_size "$dst" | md5sum | cut -d\  -f1)
+
+t3=$(tstamp)
+emit "$src_size bytes in $((t3-t1)) secs ($((t2-t1))+$((t3-t2)))"
+
+[ "$src_hash" = "$dst_hash" ] && emit "$HASH:$src_hash verified" && exit 0
+
+emit "$HASH:$src_hash $src"
+emit "$HASH:$dst_hash $dst"
+fatal "fatal: hashes do not match!"
+
