@@ -3,7 +3,7 @@
 # run MrChromebox firmware script from https://mrchromebox.tech/
 #
 
-cd &&
-  curl -OL https://mrchromebox.tech/firmware-util.sh &&
+cd /tmp &&
+  curl -OLs https://mrchromebox.tech/firmware-util.sh &&
   sudo bash firmware-util.sh
 
