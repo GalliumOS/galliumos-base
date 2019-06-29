@@ -1,4 +1,4 @@
-galliumos-base (2.9907) bismuth; urgency=medium
+galliumos-base (3.0) bismuth; urgency=medium
 
   * Prepare for GalliumOS 3.0
   * Add RESUME=none to initramfs-tools/conf.d/resume
